@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:user_system_info/src/config/base.dart';
 import 'package:user_system_info/src/helpers/k_text.dart';
+import 'package:user_system_info/src/helpers/log.dart';
+import 'package:user_system_info/src/helpers/route.dart';
+
+import 'all_system_data.dart';
 
 class HomePage extends StatelessWidget with Base {
   @override
@@ -17,15 +21,39 @@ class HomePage extends StatelessWidget with Base {
       ),
       endDrawer: Drawer(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            KText(text: 'Data List'),
+            Container(
+              height: 150,
+              width: Get.width,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+              ),
+              child: FlutterLogo(size: 30),
+            ),
+            SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: KText(
+                text: 'Data List',
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings_suggest),
+              title: KText(text: 'All System Data'),
+              dense: true,
+              onTap: () {
+                push(AllSystemData());
+              },
+            ),
           ],
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             if (userLocationTraceC.wiFiInfo.value != null)
               Container(
                 width: Get.width,
@@ -136,7 +164,7 @@ class HomePage extends StatelessWidget with Base {
                   }),
                 ),
               ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             if (userLocationTraceC.deviceInformation.value != null)
               Container(
                 width: Get.width,
@@ -307,7 +335,7 @@ class HomePage extends StatelessWidget with Base {
                   }),
                 ),
               ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             if (userLocationTraceC.androidDeviceInfo.value != null)
               Container(
                 width: Get.width,
@@ -845,7 +873,7 @@ class HomePage extends StatelessWidget with Base {
                   }),
                 ),
               ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             if (userLocationTraceC.carrierInfo.value != null)
               Container(
                 width: Get.width,
@@ -1031,7 +1059,7 @@ class HomePage extends StatelessWidget with Base {
                   }),
                 ),
               ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             if (userLocationTraceC.telephonyInfoModel.value != null)
               Container(
                 width: Get.width,
@@ -1430,7 +1458,7 @@ class HomePage extends StatelessWidget with Base {
                   }),
                 ),
               ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             if (userLocationTraceC.packageInfo.value != null)
               Container(
                 width: Get.width,
